@@ -1,0 +1,75 @@
+
+
+ORDRE DE CREATION DES FICHIERS
+==============================
+
+1.  controllers/Router.php
+2.  index.php
+3.  models/Model.php
+4.  models/DepartementManager.php
+5.  models/Departement.php
+6.  controllers/ControlleurAccueil
+7.  views/viewDepartement.php
+8.  .htaccess
+9.  views/View.php
+10. views/template.php
+11. views/viewError.php
+
+
+
+
+1.  controllers/Router.php --> général
+2.  index.php --> général
+3.  models/Model.php --> général
+4.  models/DepartementManager.php --> Classes
+5.  models/Departement.php
+6.  controllers/ControlleurDepartement --> logique
+7.  views/viewDepartement.php
+8.  .htaccess --> gestion url's
+9.  views/View.php --> génénral
+10. views/template.php --> html
+11. views/viewError.php
+
+
+
+
+!!! j'ai dû charger le site via la page 'views/index.php'
+Basically: c'est le ControllerAccueil qui est chargé par défaut, qd on arrive sur le site via l'url:
+
+http://localhost:63342/mvcSecurisee/index.php
+http://localhost:63342/mvcSecurisee/index.php?url=accueil
+
+
+
+FICHIERS SPECIFIQUES
+====================
+
+.htaccess
+---------
+Rewrite engine on                   --> active le moteur de réécriture
+
+rewriteCond %{REQUEST_FILENAME} !-f --> gestion des conflits: empêche d'accéder directement à un Fichier ('f')
+rewriteCond %{REQUEST_FILENAME} !-d --> gestion des conflits: empêche d'accéder directement à un Dossier ('d')
+
+RewriteRule ^(.*)$ index.php?url=$1 --> remplace tout ce que contient l'url par 'index.php?p=$1'
+
+
+
+
+Router.php
+----------
+Selon l'action de l'utilisateur qui passe dans l'url, différentes pages sont incluses dans le site, sur la gage 'index'.
+La page par défaut = 'accueil'.
+Mais si le user consulte un article ou clique sur un lien, le changement se passe sur 'Router'.
+--> quelle que soit la page où il pense se trouver, il sera en fait toujours sur 'index'.
+==> C'est là tout l'intérêt d'une architecture MVC.
+
+
+
+
+
+
+
+
+
+
